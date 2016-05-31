@@ -11,6 +11,10 @@ namespace Alcohol\ISO3166;
 
 class ISO3166 implements \IteratorAggregate, DataProvider
 {
+    const KEY_ALPHA2 = 'alpha2';
+    const KEY_ALPHA3 = 'alpha3';
+    const KEY_NUMERIC = 'numeric';
+
     /**
      * Lookup ISO3166-1 data by alpha2 identifier.
      *
@@ -97,7 +101,7 @@ class ISO3166 implements \IteratorAggregate, DataProvider
      */
     public function getAll()
     {
-        return self::COUNTRIES;
+        return $this->countries;
     }
 
     /**
@@ -117,7 +121,7 @@ class ISO3166 implements \IteratorAggregate, DataProvider
             ));
         }
 
-        foreach (self::COUNTRIES as $country) {
+        foreach ($this->countries as $country) {
             yield $country[$listBy] => $country;
         }
     }
@@ -129,7 +133,7 @@ class ISO3166 implements \IteratorAggregate, DataProvider
      */
     public function getIterator()
     {
-        foreach (self::COUNTRIES as $country) {
+        foreach ($this->countries as $country) {
             yield $country;
         }
     }
@@ -159,17 +163,10 @@ class ISO3166 implements \IteratorAggregate, DataProvider
         throw new \OutOfBoundsException('ISO 3166-1 does not contain: '.$id);
     }
 
-    /** @var string */
-    const KEY_ALPHA2 = 'alpha2';
-
-    /** @var string */
-    const KEY_ALPHA3 = 'alpha3';
-
-    /** @var string */
-    const KEY_NUMERIC = 'numeric';
-
-    /** @var array */
-    const COUNTRIES = [
+    /**
+     * @var array
+     */
+    protected $countries = [
         [
             'name' => 'Afghanistan',
             'alpha2' => 'AF',
