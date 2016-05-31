@@ -231,10 +231,25 @@ class ISO3166Test extends \PHPUnit_Framework_TestCase
      */
     private function getCountries($indexedBy)
     {
-        $reflected = new \ReflectionClass('Alcohol\ISO3166\ISO3166');
-        $countries = $reflected->getProperty('countries');
-        $countries->setAccessible(true);
-        $countries = $countries->getValue(new ISO3166());
+        $countries = [[
+            'name' => 'Afghanistan',
+            'alpha2' => 'AF',
+            'alpha3' => 'AFG',
+            'numeric' => '004',
+            'currency' => 'AFN',
+        ], [
+            'name' => 'Åland Islands',
+            'alpha2' => 'AX',
+            'alpha3' => 'ALA',
+            'numeric' => '248',
+            'currency' => 'EUR',
+        ], [
+            'name' => 'Albania',
+            'alpha2' => 'AL',
+            'alpha3' => 'ALB',
+            'numeric' => '008',
+            'currency' => 'ALL',
+        ]];
 
         return array_reduce(
             $countries,
