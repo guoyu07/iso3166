@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Iso3166 by alcohol</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Iso3166</h1>
+      <h2 class="project-tagline">ISO 3166-1 PHP Library</h2>
+      <a href="https://github.com/alcohol/iso3166" class="btn">View on GitHub</a>
+      <a href="https://github.com/alcohol/iso3166/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/alcohol/iso3166/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="alcoholiso3166" class="anchor" href="#alcoholiso3166" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>alcohol/iso3166</h1>
+
+<p>A PHP library providing ISO 3166-1 data.</p>
+
+<p><a href="https://travis-ci.org/alcohol/iso3166"><img src="https://img.shields.io/travis/alcohol/iso3166/master.svg?style=flat-square" alt="Build Status"></a>
+<a href="https://packagist.org/packages/alcohol/iso3166"><img src="https://img.shields.io/packagist/l/alcohol/iso3166.svg?style=flat-square" alt="License"></a></p>
+
+<h2>
+<a id="what-is-iso-3166-1" class="anchor" href="#what-is-iso-3166-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is ISO 3166-1</h2>
+
+<blockquote>
+<p>ISO 3166-1 is part of the ISO 3166 standard published by the International Organization for Standardization (ISO), and defines codes for the names of countries, dependent territories, and special areas of geographical interest. The official name of the standard is Codes for the representation of names of countries and their subdivisions – Part 1: Country codes. It defines three sets of country codes:</p>
+
+<ul>
+<li>ISO 3166-1 alpha-2 – two-letter country codes which are the most widely used of the three, and used most prominently for the Internet's country code top-level domains (with a few exceptions).</li>
+<li>ISO 3166-1 alpha-3 – three-letter country codes which allow a better visual association between the codes and the country names than the alpha-2 codes.</li>
+<li>ISO 3166-1 numeric – three-digit country codes which are identical to those developed and maintained by the United Nations Statistics Division, with the advantage of script (writing system) independence, and hence useful for people or systems using non-Latin scripts.</li>
+</ul>
+
+<p><em>-- <a href="http://en.wikipedia.org/wiki/ISO_3166-1">Wikipedia</a></em></p>
+</blockquote>
+
+<h2>
+<a id="installing" class="anchor" href="#installing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installing</h2>
+
+<div class="highlight highlight-source-shell"><pre>$ composer require alcohol/iso3166</pre></div>
+
+<h2>
+<a id="using" class="anchor" href="#using" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Using</h2>
+
+<p>Code:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Alcohol\ISO3166\ISO3166</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$iso3166</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">ISO3166</span>();</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// methods defined by interface Alcohol\ISO3166\DataProvider</span></span>
+<span class="pl-s1"><span class="pl-smi">$iso3166</span><span class="pl-k">-&gt;</span>getByAlpha2(<span class="pl-s"><span class="pl-pds">'</span>NL<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$iso3166</span><span class="pl-k">-&gt;</span>getByAlpha3(<span class="pl-s"><span class="pl-pds">'</span>NLD<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$iso3166</span><span class="pl-k">-&gt;</span>getByNumeric(<span class="pl-s"><span class="pl-pds">'</span>528<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// methods provided for convenience</span></span>
+<span class="pl-s1"><span class="pl-smi">$iso3166</span><span class="pl-k">-&gt;</span>getAll();</span>
+<span class="pl-s1"><span class="pl-k">foreach</span> (<span class="pl-smi">$iso3166</span> <span class="pl-k">as</span> <span class="pl-smi">$key</span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$value</span>) {</span>
+<span class="pl-s1">    <span class="pl-c">// simple iterator implementation using a generator (uses alpha2 for keys)</span></span>
+<span class="pl-s1">}</span>
+<span class="pl-s1"><span class="pl-k">foreach</span> (<span class="pl-smi">$iso3166</span><span class="pl-k">-&gt;</span>listBy(<span class="pl-c1">ISO3166</span><span class="pl-k">::</span><span class="pl-c1">KEY_ALPHA3</span>) <span class="pl-k">as</span> <span class="pl-smi">$key</span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$value</span>) {</span>
+<span class="pl-s1">    <span class="pl-c">// use a specific generator to iterate using other available keys</span></span>
+<span class="pl-s1">    <span class="pl-c">// constants available are KEY_ALPHA2, KEY_ALPHA3, KEY_NUMERIC</span></span>
+<span class="pl-s1">}</span></pre></div>
+
+<p>The data returned is in the format of:</p>
+
+<pre><code>Array
+(
+    [name] =&gt; Netherlands
+    [alpha2] =&gt; NL
+    [alpha3] =&gt; NLD
+    [numeric] =&gt; 528
+    [currency] =&gt; EUR
+)
+</code></pre>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>Feel free to submit a pull request or create an issue.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>alcohol/iso3166 is licensed under the MIT license.</p>
+
+<h2>
+<a id="sources" class="anchor" href="#sources" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Source(s)</h2>
+
+<ul>
+<li>
+<a href="http://en.wikipedia.org/wiki/ISO_3166-1">ISO 3166-1</a> by <a href="http://www.wikipedia.org">Wikipedia</a> licensed under <a href="http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">CC BY-SA 3.0 Unported License</a>
+</li>
+<li><a href="http://www.iso.org">www.iso.org</a></li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/alcohol/iso3166">Iso3166</a> is maintained by <a href="https://github.com/alcohol">alcohol</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
