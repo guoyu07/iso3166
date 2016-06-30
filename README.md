@@ -5,6 +5,10 @@ A PHP library providing ISO 3166-1 data.
 [![Build Status](https://img.shields.io/travis/alcohol/iso3166/master.svg?style=flat-square)](https://travis-ci.org/alcohol/iso3166)
 [![License](https://img.shields.io/packagist/l/alcohol/iso3166.svg?style=flat-square)](https://packagist.org/packages/alcohol/iso3166)
 
+## Deprecated (2016/06/30)
+
+This project has been superseded by [league/iso3166](https://github.com/thephpleague/iso3166).
+
 ## What is ISO 3166-1
 
 > ISO 3166-1 is part of the ISO 3166 standard published by the International Organization for Standardization (ISO), and defines codes for the names of countries, dependent territories, and special areas of geographical interest. The official name of the standard is Codes for the representation of names of countries and their subdivisions – Part 1: Country codes. It defines three sets of country codes:
